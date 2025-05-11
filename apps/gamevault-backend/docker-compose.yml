@@ -8,11 +8,11 @@ services:
       - /home/mansv/gamevault/games:/files
       - /home/mansv/gamevault/media:/media
     ports:
-      - ${APP_PORT}:8080/tcp
+      - ${APP_PORT}:8080
     environment:
-      DB_HOST: gamevault-db
-      DB_USERNAME: gamevault
-      DB_PASSWORD: ${GAMEVAULT_DB_PASSWORD}
+      - DB_HOST=gamevault-db
+      - DB_USERNAME=gamevault
+      - DB_PASSWORD=${GAMEVAULT_DB_PASSWORD}
     networks:
       - tipi_main_network
     labels:
@@ -49,9 +49,9 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data/
     environment:
-      POSTGRES_USER: gamevault
-      POSTGRES_PASSWORD: ${GAMEVAULT_DB_PASSWORD}
-      POSTGRES_DB: gamevault
+      - POSTGRES_USER=gamevault
+      - POSTGRES_PASSWORD=${GAMEVAULT_DB_PASSWORD}
+      - POSTGRES_DB=gamevault
     networks:
       - tipi_main_network
     labels:
