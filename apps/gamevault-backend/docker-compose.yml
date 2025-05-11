@@ -1,0 +1,58 @@
+services:
+  gamevault-backend:
+    container_name: gamevault-backend
+    image: phalcode/gamevault-backend:latest
+    restart: unless-stopped
+    command: server start
+    volumes:
+      - /home/mansv/gamevault/games:/files
+      - /home/mansv/gamevault/media:/media
+    ports:
+      - ${APP_PORT}:8080/tcp
+    environment:
+      DB_HOST: gamevault-db
+      DB_USERNAME: gamevault
+      DB_PASSWORD: ${GAMEVAULT_DB_PASSWORD}
+    networks:
+      - tipi_main_network
+    labels:
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.gamevault-backend-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8888
+      # Web
+      traefik.http.routers.gamevault-backend-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.gamevault-backend-insecure.entrypoints: web
+      traefik.http.routers.gamevault-backend-insecure.service: gamevault-backend
+      traefik.http.routers.gamevault-backend-insecure.middlewares: gamevault-backend-web-redirect
+      # Websecure
+      traefik.http.routers.gamevault-backend.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.gamevault-backend.entrypoints: websecure
+      traefik.http.routers.gamevault-backend.service: gamevault-backend
+      traefik.http.routers.gamevault-backend.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.gamevault-backend-local-insecure.rule: Host(`gamevault-backend.${LOCAL_DOMAIN}`)
+      traefik.http.routers.gamevault-backend-local-insecure.entrypoints: web
+      traefik.http.routers.gamevault-backend-local-insecure.service: gamevault-backend
+      traefik.http.routers.gamevault-backend-local-insecure.middlewares: gamevault-backend-web-redirect
+      # Local domain secure
+      traefik.http.routers.gamevault-backend-local.rule: Host(`gamevault-backend.${LOCAL_DOMAIN}`)
+      traefik.http.routers.gamevault-backend-local.entrypoints: websecure
+      traefik.http.routers.gamevault-backend-local.service: gamevault-backend
+      traefik.http.routers.gamevault-backend-local.tls: true
+      # Runtipi managed
+      runtipi.managed: true
+  gamevault-db:
+    container_name: gamevault-db
+    image: postgres:16
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: gamevault
+      POSTGRES_PASSWORD: ${GAMEVAULT_DB_PASSWORD}
+      POSTGRES_DB: gamevault
+    networks:
+      - tipi_main_network
+    labels:
+      runtipi.managed: true
