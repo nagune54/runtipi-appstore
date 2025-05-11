@@ -1,23 +1,24 @@
+version: "3.7"
 services:
   gamevault-backend:
     container_name: gamevault-backend
     image: phalcode/gamevault-backend:latest
     restart: unless-stopped
-    environment:
-      DB_SYSTEM: "SQLITE"
-    volumes:
-      - ${APP_DATA_DIR}/games:/files
-      - ${APP_DATA_DIR}/media:/media
-      - ${APP_DATA_DIR}/db:/db
     ports:
       - ${APP_PORT}:8080
     networks:
       - tipi_main_network
-    labels: # Use your editors search and replace feature to replace all instances of "gamevault-backend" with your app name in the traefik labels
+    environment:
+      DB_SYSTEM: "SQLITE"
+    volumes:
+      - ${APP_DATA_DIR}/games:/files
+      - ${APP_DATA_DIR}/games:/media
+      - ${APP_DATA_DIR}/games:/db
+    labels:
       # Main
       traefik.enable: true
       traefik.http.middlewares.gamevault-backend-web-redirect.redirectscheme.scheme: https
-      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8443 # Should be the same as the app internal port so for this example 9443
+      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8000
       # Web
       traefik.http.routers.gamevault-backend-insecure.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.gamevault-backend-insecure.entrypoints: web

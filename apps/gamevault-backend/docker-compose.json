@@ -1,0 +1,28 @@
+{
+  "services": [
+    {
+      "name": "gamevault-backend",
+      "image": "phalcode/gamevault-backend:latest",
+      "isMain": true,
+      "internalPort": 8080,
+	  "environment": {
+        "DB_SYSTEM": "SQLITE"
+      },
+	  "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/games",
+          "containerPath": "/files"
+        },
+		{
+          "hostPath": "${APP_DATA_DIR}/media",
+          "containerPath": "/media"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/sqlite",
+          "containerPath": "/db"
+        }
+      ]
+    }
+  ],
+  "$schema": "../dynamic-compose-schema.json"
+}
