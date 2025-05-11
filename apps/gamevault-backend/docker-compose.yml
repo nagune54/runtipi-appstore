@@ -1,7 +1,7 @@
 services:
   gamevault-backend:
     container_name: gamevault-backend
-    image: phalcode/gamevault-backend:latest
+    image: phalcode/gamevault-backend:14.1.1
     restart: unless-stopped
     command: server start
     volumes:
