@@ -1,25 +1,23 @@
 services:
   gamevault-backend:
     container_name: gamevault-backend
-    image: phalcode/gamevault-backend:14.1.1
+    image: phalcode/gamevault-backend:latest
     restart: unless-stopped
-    command: server start
+    environment:
+      DB_SYSTEM: "SQLITE"
     volumes:
       - /home/mansv/gamevault/games:/files
       - /home/mansv/gamevault/media:/media
+      - /home/mansv/gamevault/db:/db
     ports:
       - ${APP_PORT}:8080
-    environment:
-      - DB_HOST=gamevault-db
-      - DB_USERNAME=gamevault
-      - DB_PASSWORD=${GAMEVAULT_DB_PASSWORD}
     networks:
       - tipi_main_network
-    labels:
+    labels: # Use your editors search and replace feature to replace all instances of "gamevault-backend" with your app name in the traefik labels
       # Main
       traefik.enable: true
       traefik.http.middlewares.gamevault-backend-web-redirect.redirectscheme.scheme: https
-      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8080
+      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8443 # Should be the same as the app internal port so for this example 9443
       # Web
       traefik.http.routers.gamevault-backend-insecure.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.gamevault-backend-insecure.entrypoints: web
@@ -40,19 +38,4 @@ services:
       traefik.http.routers.gamevault-backend-local.entrypoints: websecure
       traefik.http.routers.gamevault-backend-local.service: gamevault-backend
       traefik.http.routers.gamevault-backend-local.tls: true
-      # Runtipi managed
-      runtipi.managed: true
-  gamevault-db:
-    container_name: gamevault-db
-    image: postgres:16
-    restart: unless-stopped
-    volumes:
-      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=gamevault
-      - POSTGRES_PASSWORD=${GAMEVAULT_DB_PASSWORD}
-      - POSTGRES_DB=gamevault
-    networks:
-      - tipi_main_network
-    labels:
       runtipi.managed: true
