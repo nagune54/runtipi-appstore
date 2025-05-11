@@ -19,6 +19,10 @@
           "containerPath": "/srv/media"
         },
         {
+          "hostPath": "${ROOT_FOLDER_HOST}/HDD",
+          "containerPath": "/srv/HDD"
+        },
+        {
           "hostPath": "${APP_DATA_DIR}/data/general",
           "containerPath": "/srv/general"
         },
