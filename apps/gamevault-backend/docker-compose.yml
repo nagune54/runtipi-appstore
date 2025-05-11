@@ -6,9 +6,9 @@ services:
     environment:
       DB_SYSTEM: "SQLITE"
     volumes:
-      - /home/mansv/gamevault/games:/files
-      - /home/mansv/gamevault/media:/media
-      - /home/mansv/gamevault/db:/db
+      - ${APP_DATA_DIR}/games:/files
+      - ${APP_DATA_DIR}/media:/media
+      - ${APP_DATA_DIR}/db:/db
     ports:
       - ${APP_PORT}:8080
     networks:
