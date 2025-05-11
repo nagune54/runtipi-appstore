@@ -19,7 +19,7 @@ services:
       # Main
       traefik.enable: true
       traefik.http.middlewares.gamevault-backend-web-redirect.redirectscheme.scheme: https
-      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8888
+      traefik.http.services.gamevault-backend.loadbalancer.server.port: 8080
       # Web
       traefik.http.routers.gamevault-backend-insecure.rule: Host(`${APP_DOMAIN}`)
       traefik.http.routers.gamevault-backend-insecure.entrypoints: web
