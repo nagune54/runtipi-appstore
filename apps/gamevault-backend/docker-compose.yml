@@ -11,7 +11,7 @@ services:
     environment:
       DB_SYSTEM: "SQLITE"
     volumes:
-      - ${APP_DATA_DIR}/games:/files
+      - ${ROOT_FOLDER_HOST}/HDD/games:/files
       - ${APP_DATA_DIR}/games:/media
       - ${APP_DATA_DIR}/games:/db
     labels:

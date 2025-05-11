@@ -10,7 +10,7 @@
       },
 	  "volumes": [
         {
-          "hostPath": "${APP_DATA_DIR}/games",
+          "hostPath": "${ROOT_FOLDER_HOST}/HDD/games",
           "containerPath": "/files"
         },
 		{
