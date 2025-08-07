@@ -2,42 +2,60 @@ version: '3.8'
 
 services:
   yamtrack:
-    container_name: "{{APP_ID}}"
-    image: "{{APP_IMAGE}}"
-    restart: "on-failure:5"
-    mem_limit: "2g"
-    security_opt:
-      - "no-new-privileges:true"
+    image: ghcr.io/fuzzygrim/yamtrack
+    container_name: yamtrack
+    networks:
+      - tipi_main_network
+    volumes:
+      - ${APP_DATA_DIR}/db:/yamtrack/db
     ports:
-      - "{{APP_PORT}}:8000"
-    volumes:
-      - "{{APP_DATA_DIR}}/db:/app/data"
-    environment:
-      SECRET: "{{YAMTRACK_SECRET}}"
-      REDIS_URL: "redis://redis:6379"
-      TMDB_NSFW: "{{TMDB_NSFW}}"
-      MAL_NSFW: "{{MAL_NSFW}}"
-      TZ: "{{TZ}}"
-      TMDB_API: "{{TMDB_API_KEY}}"
-      MAL_API: "{{MAL_API_KEY}}"
+      - ${APP_PORT}:8080
     depends_on:
-      redis:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD-SHELL", "nc -z 127.0.0.1 8000 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 90s
-
-  redis:
-    container_name: "{{APP_ID}}-redis"
-    image: "redis:7-alpine"
-    restart: "on-failure:5"
+      - yamtrack-redis
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Seoul
+      - SECRET="{{YAMTRACK_SECRET}}"
+      - REDIS_HOST=yamtrack-redis
+      - REDIS_URL=redis://redis:6379
+    labels:
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.yamtrack-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.yamtrack.loadbalancer.server.port: 8080
+      # Web
+      traefik.http.routers.yamtrack-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.yamtrack-insecure.entrypoints: web
+      traefik.http.routers.yamtrack-insecure.service: yamtrack
+      traefik.http.routers.yamtrack-insecure.middlewares: yamtrack-web-redirect
+      # Websecure
+      traefik.http.routers.yamtrack.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.yamtrack.entrypoints: websecure
+      traefik.http.routers.yamtrack.service: yamtrack
+      traefik.http.routers.yamtrack.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.yamtrack-local-insecure.rule: Host(`yamtrack.${LOCAL_DOMAIN}`)
+      traefik.http.routers.yamtrack-local-insecure.entrypoints: web
+      traefik.http.routers.yamtrack-local-insecure.service: yamtrack
+      traefik.http.routers.yamtrack-local-insecure.middlewares: yamtrack-web-redirect
+      # Local domain secure
+      traefik.http.routers.yamtrack-local.rule: Host(`yamtrack.${LOCAL_DOMAIN}`)
+      traefik.http.routers.yamtrack-local.entrypoints: websecure
+      traefik.http.routers.yamtrack-local.service: yamtrack
+      traefik.http.routers.yamtrack-local.tls: true
+      runtipi.managed: true
+  yamtrack-redis:
+    image: redis:alpine
+    container_name: yamtrack-redis
+    restart: unless-stopped
     volumes:
-      - "{{APP_DATA_DIR}}/redis:/data"
+      - ${APP_DATA_DIR}/data/redis:/data
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    networks:
+      - tipi_main_network
+    labels:
+      runtipi.managed: true

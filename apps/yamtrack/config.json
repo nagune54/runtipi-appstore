@@ -1,53 +1,29 @@
 {
-  "name": "Yamtrack",
-  "id": "yamtrack",
+  "$schema": "../app-info-schema.json",
+  "name": "yamtrack",
   "available": true,
-  "description_short": "A self-hosted media tracker with Redis.",
-  "description_long": "Yamtrack is a self-hosted media tracker for movies, tv shows, anime, manga, video games and books. This version uses Redis for caching and session management, providing better performance.",
+  "deprecated": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "port": 8124,
+  "id": "yamtrack",
+  "tipi_version": 4,
   "version": "latest",
-  "port": 8000,
-  "image_source": "docker",
-  "image": "ghcr.io/fuzzygrim/yamtrack:latest",
-  "expose": true,
-  "supported_architectures": ["amd64", "arm64"],
-  "auth": false,
-  "settings": [
+  "categories": ["media"],
+  "description": "Yamtrack is a self hosted media tracker for movies, tv shows, anime, manga, video games and books.",
+  "short_desc": "Yamtrack is a self hosted media tracker for movies, tv shows, anime, manga, video games and books.",
+  "author": "FuzzyGrim",
+  "source": "https://github.com/FuzzyGrim/Yamtrack/",
+  "form_fields": [
     {
-      "id": "YAMTRACK_SECRET",
-      "name": "Secret Key (필수)",
-      "description": "보안을 위한 긴 무작위 문자열입니다. 아래 'Secret Key 생성하기' 설명을 참고하여 값을 생성하고 붙여넣으세요.",
       "type": "text",
-      "default": "여기에-새로운-시크릿-키를-붙여넣으세요"
-    },
-    {
-      "id": "TMDB_API_KEY",
-      "name": "TMDB API Key (선택)",
-      "description": "The Movie Database (TMDB)에서 발급받은 API 키를 입력하세요.",
-      "type": "text",
-      "default": ""
-    },
-    {
-      "id": "MAL_API_KEY",
-      "name": "MyAnimeList API Key (선택)",
-      "description": "MyAnimeList (MAL)에서 발급받은 Client ID를 입력하세요.",
-      "type": "text",
-      "default": ""
-    },
-    {
-      "id": "TMDB_NSFW",
-      "name": "TMDB 성인 컨텐츠 허용",
-      "description": "TMDB의 NSFW(성인용) 컨텐츠를 허용하려면 true로 설정하세요.",
-      "type": "select",
-      "options": ["false", "true"],
-      "default": "false"
-    },
-    {
-      "id": "MAL_NSFW",
-      "name": "MAL 성인 컨텐츠 허용",
-      "description": "MyAnimeList의 NSFW(성인용) 컨텐츠를 허용하려면 true로 설정하세요.",
-      "type": "select",
-      "options": ["false", "true"],
-      "default": "false"
+      "label": "Secret",
+      "required": true,
+      "env_variable": "YAMTRACK_SECRET"
     }
-  ]
+  ],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1691943801422,
+  "updated_at": 1740247068576,
+  "force_pull": true
 }
