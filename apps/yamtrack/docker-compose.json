@@ -1,0 +1,18 @@
+{
+  "services": {
+    "yamtrack": {
+      "container_name": "{{APP_ID}}",
+      "image": "{{APP_IMAGE}}",
+      "restart": "unless-stopped",
+      "ports": [
+        "{{APP_PORT}}:8000"
+      ],
+      "volumes": [
+        "{{APP_DATA_DIR}}:/app/data"
+      ],
+      "environment": {
+        "TZ": "{{TZ}}"
+      }
+    }
+  }
+}
