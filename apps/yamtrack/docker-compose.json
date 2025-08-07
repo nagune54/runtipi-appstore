@@ -1,52 +1,27 @@
 {
   "services": [
-	{
+    {
       "name": "yamtrack",
-	  "image": "ghcr.io/fuzzygrim/yamtrack",
-	  "internalPort": 8000,
-	  "isMain": true,
-	  "volumes": [
-        {
-          "hostPath": "${APP_DATA_DIR}/data/yamtrack/db",
-          "containerPath": "/yamtrack/db",
-          "readOnly": false
-        }
-      ],
+      "image": "ghcr.io/FuzzyGrim/Yamtrack:latest",
+      "isMain": true,
+      "internalPort": 8000,
 	  "environment": {
         "TZ": "Asia/Seoul",
         "SECRET": "${SECRET}",
 		"REDIS_URL": "redis://redis:6379"
       },
-	  "addPorts": [
+	  "volumes": [
 		{
-          "containerPort": 8000,
-          "hostPort": 8000,
-          "tcp": true
-        },
-        {
-          "containerPort": 25565,
-          "hostPort": 25565,
-          "udp": true
+          "hostPath": "${APP_DATA_DIR}/db",
+          "containerPath": "/yamtrack/db"
         }
-	  ],
-      "healthCheck": {
-        "test": "curl --fail http://localhost || exit 1",
-        "retries": 3,
-        "interval": "30s",
-        "timeout": "10s"
-      },
-      "dependsOn": ["yamtrack-db"]
+      ],
+      "dependsOn": ["yamtrack-redis"]
     },
     {
       "name": "yamtrack-redis",
       "image": "redis:7-alpine",
-      "volumes": [
-        {
-          "hostPath": "${APP_DATA_DIR}/data/redis",
-          "containerPath": "redis_data",
-          "readOnly": false
-        }
-      ]
+      "command": "redis-server --save 60 1 --loglevel warning"
     }
   ]
 }

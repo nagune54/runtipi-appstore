@@ -1,28 +1,28 @@
 {
   "$schema": "../app-info-schema.json",
   "name": "yamtrack",
-  "id": "yamtrack",
   "available": true,
-  "short_desc": "Yamtrack is a self hosted media tracker for movies, tv shows, anime, manga, video games and books.",
-  "author": "FuzzyGrim",
-  "port": 8124,
+  "exposable": true,
+  "dynamic_config": true,
+  "port": 8200,
+  "id": "yamtrack",
   "categories": ["media"],
-  "description": "Yamtrack is a self hosted media tracker for movies, tv shows, anime, manga, video games and books.",
+  "description": "yamtrack",
   "tipi_version": 1,
   "version": "latest",
-  "source": "https://github.com/FuzzyGrim/Yamtrack/",
-  "exposable": true,
-  "supported_architectures": ["amd64"],
-  "deprecated": true,
+  "short_desc": "yamtrack",
+  "author": "FuzzyGrim",
+  "source": "https://github.com/FuzzyGrim/Yamtrack",
   "form_fields": [
-    {
+	{
       "type": "text",
-      "label": "Secret",
+      "label": "SECRET ID",
       "required": true,
       "env_variable": "SECRET"
     }
   ],
-  "dynamic_config": true,
-  "created_at": 1754584826544,
-  "updated_at": 1754584826544
+  "supported_architectures": ["amd64"],
+  "created_at": 1691943801422,
+  "updated_at": 1740247420440,
+  "force_pull": true
 }
