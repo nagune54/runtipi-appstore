@@ -1,0 +1,27 @@
+{
+  "services": [
+    {
+      "name": "mediatracker",
+      "image": "bonukai/mediatracker:latest",
+      "isMain": true,
+      "internalPort": 7481,
+      "environment": {
+		"TZ": "Asia/Seoul",
+		"SERVER_LANG": "ko",
+		"TMDB_LANG": "ja",
+		"AUDIBLE_LANG": "jp",
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/.config/mediatracker/data",
+          "containerPath": "/storage"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/assets",
+          "containerPath": "/assets"
+        }
+      ]
+    }
+  ],
+  "$schema": "../dynamic-compose-schema.json"
+}

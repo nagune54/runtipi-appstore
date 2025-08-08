@@ -1,0 +1,21 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "mediatracker",
+  "port": 7481,
+  "available": true,
+  "exposable": true,
+  "deprecated": true,
+  "dynamic_config": true,
+  "id": "mediatracker",
+  "tipi_version": 1,
+  "version": "latest",
+  "description": "mediatracker",
+  "short_desc": "mediatracker",
+  "author": "bonukai",
+  "categories": [],
+  "source": "https://github.com/bonukai/MediaTracker",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1691943801422,
+  "updated_at": 1723566285000
+}
