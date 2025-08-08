@@ -4,18 +4,17 @@
   "port": 7481,
   "available": true,
   "exposable": true,
-  "deprecated": true,
   "dynamic_config": true,
   "id": "mediatracker",
   "tipi_version": 1,
   "version": "latest",
+  "categories": ["media"],
   "description": "mediatracker",
   "short_desc": "mediatracker",
   "author": "bonukai",
-  "categories": ["media"],
   "source": "https://github.com/bonukai/MediaTracker",
   "form_fields": [],
   "supported_architectures": ["arm64", "amd64"],
   "created_at": 1691943801422,
-  "updated_at": 1723566285000
+  "updated_at": 1734908651396
 }
