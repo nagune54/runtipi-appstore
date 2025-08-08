@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "ryot",
-      "image": "ghcr.io/ignisda/ryot:v2.24.2",
+      "image": "ghcr.io/ignisda/ryot:v9",
       "isMain": true,
       "internalPort": 8000,
       "environment": {
@@ -16,7 +16,7 @@
     },
     {
       "name": "ryot-db",
-      "image": "postgres:15-alpine",
+      "image": "postgres:16-alpine",
       "environment": {
         "POSTGRES_USER": "tipi",
         "POSTGRES_PASSWORD": "${RYOT_DB_PASSWORD}",
