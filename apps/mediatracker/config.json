@@ -12,7 +12,7 @@
   "description": "mediatracker",
   "short_desc": "mediatracker",
   "author": "bonukai",
-  "categories": [],
+  "categories": ["media"],
   "source": "https://github.com/bonukai/MediaTracker",
   "form_fields": [],
   "supported_architectures": ["arm64", "amd64"],
