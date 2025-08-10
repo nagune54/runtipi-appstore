@@ -17,6 +17,10 @@
         {
           "hostPath": "${APP_DATA_DIR}/data/wordpress",
           "containerPath": "/var/www/html"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/wordpress/wp-content",
+          "containerPath": "/var/www/html/wp-content"
         }
       ]
     },
