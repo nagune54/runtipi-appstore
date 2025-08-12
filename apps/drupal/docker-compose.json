@@ -6,7 +6,7 @@
       "isMain": true,
       "internalPort": 80,
       "environment": {
-        "DRUPAL_DB_NAME": "ryot",
+        "DRUPAL_DB_NAME": "drupal",
         "DRUPAL_DB_USER": "tipi",
         "DRUPAL_DB_PASSWORD": "${DB_PASSWORD}",
         "DRUPAL_DB_HOST": "drupal-db"
@@ -17,16 +17,17 @@
     },
     {
       "name": "drupal-db",
-      "image": "postgres:16-alpine",
+      "image": "mariadb:10.6",
       "environment": {
-        "POSTGRES_USER": "tipi",
-        "POSTGRES_PASSWORD": "${DB_PASSWORD}",
-        "POSTGRES_DB": "ryot"
+        "MARIADB_USER": "tipi",
+        "MARIADB_PASSWORD": "${DB_PASSWORD}",
+        "MARIADB_DATABASE": "drupal",
+        "MARIADB_ROOT_PASSWORD": "${DB_PASSWORD}"
       },
       "volumes": [
         {
-          "hostPath": "${APP_DATA_DIR}/data/postgres",
-          "containerPath": "/var/lib/postgresql/data"
+          "hostPath": "${APP_DATA_DIR}/data/mariadb",
+          "containerPath": "/var/lib/mysql"
         }
       ]
     }
