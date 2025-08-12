@@ -24,7 +24,7 @@
           "containerPath": "/var/www/html/sites"
         }
       ],
-      "dependsOn": ["ryot-db"]
+      "dependsOn": ["drupal-db"]
     },
     {
       "name": "drupal-db",
