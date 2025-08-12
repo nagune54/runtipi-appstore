@@ -5,11 +5,28 @@
       "image": "drupal:10-apache",
       "isMain": true,
       "internalPort": 80,
-      "environment": {},
+      "environment": {
+        "DRUPAL_DB_NAME": "ryot",
+        "DRUPAL_DB_USER": "tipi",
+        "DRUPAL_DB_PASSWORD": "${DB_PASSWORD}",
+        "DRUPAL_DB_HOST": "drupal-db"
+      },
       "volumes": [
         {
-          "hostPath": "${APP_DATA_DIR}/data/html",
-          "containerPath": "/var/www/html"
+          "hostPath": "${APP_DATA_DIR}/data/html/modules",
+          "containerPath": "/var/www/html/modules"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/html/themes",
+          "containerPath": "/var/www/html/themes"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/html/profiles",
+          "containerPath": "/var/www/html/profiles"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/html/sites",
+          "containerPath": "/var/www/html/sites"
         }
       ],
       "dependsOn": ["drupal-db"]
