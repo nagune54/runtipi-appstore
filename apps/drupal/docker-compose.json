@@ -12,10 +12,6 @@
         "DRUPAL_DB_HOST": "drupal-db"
       },
       "volumes": [
-        {
-          "hostPath": "${APP_DATA_DIR}/data/html/sites",
-          "containerPath": "/var/www/html/sites"
-        }
       ],
       "dependsOn": ["drupal-db"]
     },
