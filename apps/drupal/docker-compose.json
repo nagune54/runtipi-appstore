@@ -4,7 +4,7 @@
       "name": "drupal",
       "image": "drupal:10-apache",
       "isMain": true,
-      "internalPort": 8080,
+      "internalPort": 80,
       "environment": {},
       "volumes": [
         {
