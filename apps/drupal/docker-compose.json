@@ -8,20 +8,8 @@
       "environment": {},
       "volumes": [
         {
-          "hostPath": "${APP_DATA_DIR}/data/modules",
-          "containerPath": "/var/www/html/modules"
-        },
-        {
-          "hostPath": "${APP_DATA_DIR}/data/profiles",
-          "containerPath": "/var/www/html/profiles"
-        },
-        {
-          "hostPath": "${APP_DATA_DIR}/data/themes",
-          "containerPath": "/var/www/html/themes"
-        },
-        {
-          "hostPath": "${APP_DATA_DIR}/data/sites",
-          "containerPath": "/var/www/html/sites"
+          "hostPath": "${APP_DATA_DIR}/data/html",
+          "containerPath": "/var/www/html"
         }
       ],
       "dependsOn": ["drupal-db"]
