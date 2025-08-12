@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "drupal",
-      "image": "drupal:php8.4-fpm-bullseye",
+      "image": "php8.4-apache-bullseye",
       "isMain": true,
       "internalPort": 80,
       "environment": {
