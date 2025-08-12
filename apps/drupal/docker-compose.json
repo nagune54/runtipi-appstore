@@ -13,18 +13,6 @@
       },
       "volumes": [
         {
-          "hostPath": "${APP_DATA_DIR}/data/html/modules",
-          "containerPath": "/var/www/html/modules"
-        },
-        {
-          "hostPath": "${APP_DATA_DIR}/data/html/themes",
-          "containerPath": "/var/www/html/themes"
-        },
-        {
-          "hostPath": "${APP_DATA_DIR}/data/html/profiles",
-          "containerPath": "/var/www/html/profiles"
-        },
-        {
           "hostPath": "${APP_DATA_DIR}/data/html/sites",
           "containerPath": "/var/www/html/sites"
         }
