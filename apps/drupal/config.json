@@ -15,7 +15,7 @@
   "source": "https://git.drupalcode.org/project/drupal",
   "form_fields": [
     {
-      "type": "random",
+      "type": "password",
       "label": "DB_PASSWORD",
       "min": 32,
       "env_variable": "DB_PASSWORD"
