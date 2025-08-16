@@ -14,7 +14,8 @@
   "author": "Difegue",
   "source": "https://github.com/Difegue/LANraragi/",
   "form_fields": [],
-  "supported_architectures": ["amd64"],
+  "website": "https://github.com/Difegue/LANraragi/",
+  "supported_architectures": ["arm64", "amd64"],
   "created_at": 1691943801422,
   "updated_at": 1734908651396
 }

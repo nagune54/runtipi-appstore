@@ -2,10 +2,10 @@
   "services": [
     {
       "name": "lanraragi",
-      "image": "difegue/lanraragi:v.0.9.50",
+      "image": "ghcr.io/difegue/lanraragi:v.0.9.50",
       "isMain": true,
       "internalPort": 3000,
-      "dependsOn": [],
+	  "environment": {},
       "volumes": [
         {
           "hostPath": "${ROOT_FOLDER_HOST}/media/hentai",

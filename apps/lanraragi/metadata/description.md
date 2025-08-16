@@ -1,13 +1,10 @@
 # LANraragi
-===========
 
 Open source server for archival of comics/manga, running on Mojolicious + Redis.
 
-#### 💬 Talk with other fellow LANraragi Users on [Discord](https://discord.gg/aRQxtbg) or [GitHub Discussions](https://github.com/Difegue/LANraragi/discussions)  
+#### Talk with other fellow LANraragi Users on Discord or GitHub Discussions
 
-####  [📄 Documentation](https://sugoi.gitbook.io/lanraragi/v/dev) | [⏬ Download](https://github.com/Difegue/LANraragi/releases/latest) | [🎞 Demo](https://lrr.tvc-16.science) | [🪟🌃 Windows Nightlies](https://nightly.link/Difegue/LANraragi/workflows/push-continous-delivery/dev) | [💵 Sponsor Development](https://ko-fi.com/T6T2UP5N)  
-
-<sub>LANraragi uses Weblate for translation hosting.</sub>  
+LANraragi uses Weblate for translation hosting.
 
 ## Features  
 
@@ -17,7 +14,7 @@ Open source server for archival of comics/manga, running on Mojolicious + Redis.
 
 * Read your archives in dedicated reader software using the built-in OPDS Catalog (now with PSE support!)
 
-* Use the Client API to interact with LANraragi from other programs (Available for [many platforms!](https://sugoi.gitbook.io/lanraragi/v/dev/advanced-usage/external-readers))
+* Use the Client API to interact with LANraragi from other programs (Available for many platforms!
 
 * Two different user interfaces : compact archive list with thumbnails-on-hover, or thumbnail view.
 
@@ -39,4 +36,4 @@ Open source server for archival of comics/manga, running on Mojolicious + Redis.
 
 ## Make a PR, get stickers™  
 
-Merged PRs to this repo(or $5+ donations) are eligible to get a dumb sticker pack [shipped on the house.](https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__osxt25URTdTUTVBVFRCTjlYWFJLMlEzRTJPUEhEVy4u)  
+Merged PRs to this repo(or $5+ donations) are eligible to get a dumb sticker pack shipped on the house.
