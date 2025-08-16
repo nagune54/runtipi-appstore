@@ -10,16 +10,16 @@
             "name": "lanraragi",
             "volumes": [
                 {
-                    "containerPath": "/home/koyomi/lanraragi/content",
-                    "hostPath": "${ROOT_FOLDER_HOST}/media/hentai"
+                    "containerPath": "${ROOT_FOLDER_HOST}/media/hentai",
+                    "hostPath": "/home/koyomi/lanraragi/content"
                 },
                 {
-                    "containerPath": "/home/koyomi/lanraragi/thumb",
-                    "hostPath": "${APP_DATA_DIR}/data/thumb"
+                    "containerPath": "${APP_DATA_DIR}/data/thumb",
+                    "hostPath": "/home/koyomi/lanraragi/thumb"
                 },
                 {
-                    "containerPath": "/home/koyomi/lanraragi/database",
-                    "hostPath": "${APP_DATA_DIR}/data/database"
+                    "containerPath": "${APP_DATA_DIR}/data/database",
+                    "hostPath": "/home/koyomi/lanraragi/database"
                 }
             ]
         }
