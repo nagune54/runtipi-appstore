@@ -1,1 +1,27 @@
-{"$schema":"../dynamic-compose-schema.json","services":[{"environment":{},"image":"difegue/lanraragi:v.0.9.50","internalPort":3000,"isMain":true,"name":"lanraragi","volumes":[{"containerPath":"/home/koyomi/lanraragi/content","hostPath":"${ROOT_FOLDER_HOST}/media/hentai"},{"containerPath":"/home/koyomi/lanraragi/thumb","hostPath":"${APP_DATA_DIR}/data/thumb"},{"containerPath":"/home/koyomi/lanraragi/database","hostPath":"${APP_DATA_DIR}/data/database"}]}]}
+{
+    "$schema": "../dynamic-compose-schema.json",
+    "services": [
+        {
+            "environment": {
+            },
+            "image": "difegue/lanraragi:v.0.9.50",
+            "internalPort": 3000,
+            "isMain": true,
+            "name": "lanraragi",
+            "volumes": [
+                {
+                    "containerPath": "/home/koyomi/lanraragi/content",
+                    "hostPath": "${ROOT_FOLDER_HOST}/media/hentai"
+                },
+                {
+                    "containerPath": "/home/koyomi/lanraragi/thumb",
+                    "hostPath": "${APP_DATA_DIR}/data/thumb"
+                },
+                {
+                    "containerPath": "/home/koyomi/lanraragi/database",
+                    "hostPath": "${APP_DATA_DIR}/data/database"
+                }
+            ]
+        }
+    ]
+}
