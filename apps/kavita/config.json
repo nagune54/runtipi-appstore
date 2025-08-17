@@ -7,7 +7,7 @@
   "dynamic_config": true,
   "id": "kavita",
   "tipi_version": 20,
-  "version": "0.8.6",
+  "version": "0.8.7",
   "categories": ["media"],
   "description": "Kavita is a fast, feature rich, cross platform reading server",
   "short_desc": "Kavita is a fast, feature rich, cross platform reading server",
